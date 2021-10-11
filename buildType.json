@@ -1,0 +1,913 @@
+{
+  "id": "Billing_Tools_Arcadia_Build_DockerBinaryPullRequest",
+  "name": "Docker Binary Pull Request",
+  "projectName": "Billing / Tools / Arcadia / Build",
+  "projectId": "Billing_Tools_Arcadia_Build",
+  "href": "/app/rest/buildTypes/id:Billing_Tools_Arcadia_Build_DockerBinaryPullRequest",
+  "webUrl": "https://teamcity.yandex-team.ru/viewType.html?buildTypeId=Billing_Tools_Arcadia_Build_DockerBinaryPullRequest",
+  "project": {
+    "id": "Billing_Tools_Arcadia_Build",
+    "name": "Build",
+    "parentProjectId": "Billing_Tools_Arcadia",
+    "href": "/app/rest/projects/id:Billing_Tools_Arcadia_Build",
+    "webUrl": "https://teamcity.yandex-team.ru/project.html?projectId=Billing_Tools_Arcadia_Build"
+  },
+  "templates": {
+    "count": 2,
+    "buildType": [
+      {
+        "id": "Billing_LicenseServerTemplate",
+        "name": "License Server Template",
+        "templateFlag": true,
+        "projectName": "Billing",
+        "projectId": "Billing",
+        "href": "/app/rest/buildTypes/id:Billing_LicenseServerTemplate"
+      },
+      {
+        "id": "Billing_Tools_Arcadia_BalanceCodeArcadiaTemplate",
+        "name": "BalanceCode_Arcadia_Template",
+        "templateFlag": true,
+        "projectName": "Billing / Tools / Arcadia",
+        "projectId": "Billing_Tools_Arcadia",
+        "href": "/app/rest/buildTypes/id:Billing_Tools_Arcadia_BalanceCodeArcadiaTemplate"
+      }
+    ]
+  },
+  "vcs-root-entries": {
+    "count": 1,
+    "vcs-root-entry": [
+      {
+        "id": "Billing_GitHubCi",
+        "inherited": true,
+        "vcs-root": {
+          "id": "Billing_GitHubCi",
+          "name": "GitHub Ci",
+          "href": "/app/rest/vcs-roots/id:Billing_GitHubCi"
+        },
+        "checkout-rules": "+:. => ./ci"
+      }
+    ]
+  },
+  "settings": {
+    "count": 6,
+    "property": [
+      {
+        "name": "allowExternalStatus",
+        "value": "true",
+        "inherited": true
+      },
+      {
+        "name": "buildNumberCounter",
+        "value": "872"
+      },
+      {
+        "name": "checkoutMode",
+        "value": "ON_AGENT",
+        "inherited": true
+      },
+      {
+        "name": "cleanBuild",
+        "value": "true",
+        "inherited": true
+      },
+      {
+        "name": "executionTimeoutMin",
+        "value": "120",
+        "inherited": true
+      },
+      {
+        "name": "maximumNumberOfBuilds",
+        "value": "0"
+      }
+    ]
+  },
+  "parameters": {
+    "count": 41,
+    "href": "/app/rest/buildTypes/id:Billing_Tools_Arcadia_Build_DockerBinaryPullRequest/parameters",
+    "property": [
+      {
+        "name": "balance.arcadia_branch",
+        "value": "trunk",
+        "type": {
+          "rawValue": "text display='normal' validationMode='any'"
+        }
+      },
+      {
+        "name": "balance.arcadia_dir",
+        "value": "%teamcity.build.checkoutDir%/arcadia",
+        "inherited": true
+      },
+      {
+        "name": "balance.arcadia_force_patch",
+        "value": "false",
+        "inherited": true,
+        "type": {
+          "rawValue": "checkbox uncheckedValue='false' display='prompt' checkedValue='true'"
+        }
+      },
+      {
+        "name": "balance.arcadia_pr_id",
+        "value": "",
+        "inherited": true,
+        "type": {
+          "rawValue": "text validationMode='any' display='prompt'"
+        }
+      },
+      {
+        "name": "balance.arcadia_revision",
+        "value": "",
+        "inherited": true,
+        "type": {
+          "rawValue": "text display='normal' validationMode='any'"
+        }
+      },
+      {
+        "name": "balance.balance_binary_url",
+        "value": "",
+        "type": {
+          "rawValue": "text description='Url to get balance-binary from' validationMode='any' display='prompt'"
+        }
+      },
+      {
+        "name": "balance.code",
+        "value": "clean",
+        "type": {
+          "rawValue": "select description='Use only for debug. Change code in branch dir manually. Set |'existing|' value. Code will not change on branch launch.' label='Use balance_code existing in branch dir or fully update' data_2='existing' data_1='clean' display='normal'"
+        }
+      },
+      {
+        "name": "balance.docker_name",
+        "value": "",
+        "type": {
+          "rawValue": "text validationMode='any' display='prompt'"
+        }
+      },
+      {
+        "name": "balance.snout_proxy_binary_url",
+        "value": "",
+        "type": {
+          "rawValue": "text display='prompt' description='Url to get yb-snout-proxy-binary from' validationMode='any'"
+        }
+      },
+      {
+        "name": "billing.branch.balance_db",
+        "value": "TEST_BALANCE_YANDEX_RU",
+        "type": {
+          "rawValue": "text validationMode='not_empty' display='hidden'"
+        }
+      },
+      {
+        "name": "billing.branch.host",
+        "value": "greed-branch.paysys.yandex.ru",
+        "type": {
+          "rawValue": "text display='hidden' readOnly='true' validationMode='not_empty'"
+        }
+      },
+      {
+        "name": "billing.branch.logs_dir",
+        "value": "/var/log/branches-testing",
+        "type": {
+          "rawValue": "text display='hidden' readOnly='true' validationMode='not_empty'"
+        }
+      },
+      {
+        "name": "billing.branch.logs_max_ttl",
+        "value": "14",
+        "type": {
+          "rawValue": "text display='hidden' readOnly='true' validationMode='not_empty'"
+        }
+      },
+      {
+        "name": "billing.branch.max_ttl",
+        "value": "14",
+        "type": {
+          "rawValue": "text display='hidden' readOnly='true' validationMode='not_empty'"
+        }
+      },
+      {
+        "name": "billing.branch.work_dir",
+        "value": "branches-testing",
+        "type": {
+          "rawValue": "text display='hidden' readOnly='true' validationMode='not_empty'"
+        }
+      },
+      {
+        "name": "billing.branchTTL",
+        "value": "1",
+        "type": {
+          "rawValue": "text description='Branch time to live (days)' regexp='\\d+' validationMode='regex' display='prompt'"
+        }
+      },
+      {
+        "name": "billing.ci-venv-dir",
+        "value": "/opt/venvs/yb-ci-venv",
+        "inherited": true,
+        "type": {
+          "rawValue": "text display='hidden' readOnly='true' validationMode='not_empty'"
+        }
+      },
+      {
+        "name": "billing.dockerImage",
+        "value": "registry.yandex.net/balance/toolsrun-binary:trusty",
+        "type": {
+          "rawValue": "text validationMode='not_empty' display='normal'"
+        }
+      },
+      {
+        "name": "billing.dockerIncreaseWorkers",
+        "value": "no",
+        "type": {
+          "rawValue": "checkbox uncheckedValue='no' display='normal' checkedValue='yes' description='Used for Hermione testing' label='Increase docker workers count'"
+        }
+      },
+      {
+        "name": "billing.instant_client_dir",
+        "value": "instantclient_19_3",
+        "inherited": true,
+        "type": {
+          "rawValue": "select display='normal' data_2='instantclient_19_3' data_1='instantclient_12_1'"
+        }
+      },
+      {
+        "name": "billing.needQAWeb",
+        "value": "no",
+        "type": {
+          "rawValue": "checkbox uncheckedValue='no' display='normal' checkedValue='yes' description='QA web application'"
+        }
+      },
+      {
+        "name": "billing.needStorybook",
+        "value": "no",
+        "type": {
+          "rawValue": "checkbox uncheckedValue='no' display='normal' checkedValue='yes'"
+        }
+      },
+      {
+        "name": "billing.pythonVersion",
+        "value": "2.7",
+        "type": {
+          "rawValue": "select data_2='2.7-dbg' data_1='2.7' display='hidden'"
+        }
+      },
+      {
+        "name": "billing.qa.branch",
+        "value": "master",
+        "type": {
+          "rawValue": "text description='For PR use: pull/{PR_ID}/merge' validationMode='not_empty' display='normal'"
+        }
+      },
+      {
+        "name": "billing.runCron",
+        "value": "no",
+        "type": {
+          "rawValue": "checkbox uncheckedValue='no' display='normal' checkedValue='yes'"
+        }
+      },
+      {
+        "name": "billing.runTVMTool",
+        "value": "yes",
+        "type": {
+          "rawValue": "checkbox uncheckedValue='no' display='normal' checkedValue='yes'"
+        }
+      },
+      {
+        "name": "billing.utils_branch",
+        "value": "master",
+        "inherited": true
+      },
+      {
+        "name": "billing.vcs.tools.branch_spec",
+        "value": "-:*",
+        "type": {
+          "rawValue": "text validationMode='any' display='hidden'"
+        }
+      },
+      {
+        "name": "billing.vhost.branch",
+        "value": "%billing.vhost.stableBranch%",
+        "type": {
+          "rawValue": "text display='prompt' description='Pass any bitbacket branch of tools repository to get vhost from it.' label='Which vhost branch to build' validationMode='not_empty'"
+        }
+      },
+      {
+        "name": "billing.vhost.code",
+        "value": "clean",
+        "type": {
+          "rawValue": "select data_2='update' data_1='clean' display='normal' data_3='existing'"
+        }
+      },
+      {
+        "name": "billing.vhost.stableBranch",
+        "value": "RELEASE-2_245",
+        "type": {
+          "rawValue": "text display='normal' description='Used only to store branch currently in production. To pass into billing.vhost.branch.' validationMode='not_empty'"
+        }
+      },
+      {
+        "name": "billing.vhost.testingBranch",
+        "value": "RELEASE-2_246",
+        "type": {
+          "rawValue": "text display='normal' description='Used only to store branch currently in testing. To pass into billing.vhost.branch.' validationMode='not_empty'"
+        }
+      },
+      {
+        "name": "billing.yarn.global_dir",
+        "value": "/usr/local/share/.config/yarn/global",
+        "inherited": true,
+        "type": {
+          "rawValue": "text display='hidden' readOnly='true' validationMode='not_empty'"
+        }
+      },
+      {
+        "name": "env.branch_dir",
+        "value": ""
+      },
+      {
+        "name": "env.branch_id",
+        "value": "",
+        "type": {
+          "rawValue": "text display='hidden' validationMode='any'"
+        }
+      },
+      {
+        "name": "env.branch_id_raw",
+        "value": "",
+        "type": {
+          "rawValue": "text display='hidden' validationMode='any'"
+        }
+      },
+      {
+        "name": "env.DEBEMAIL",
+        "value": "robot-billing-ci@yandex-team.ru",
+        "inherited": true,
+        "type": {
+          "rawValue": "text display='hidden' validationMode='not_empty'"
+        }
+      },
+      {
+        "name": "env.DEBFULLNAME",
+        "value": "Integrat Dostavlyaev",
+        "inherited": true,
+        "type": {
+          "rawValue": "text display='hidden' validationMode='not_empty'"
+        }
+      },
+      {
+        "name": "env.YB_CI_ALLOW_PULL_REQUEST_BUILD",
+        "value": "true",
+        "inherited": true,
+        "type": {
+          "rawValue": "checkbox uncheckedValue='false' display='hidden' checkedValue='true'"
+        }
+      },
+      {
+        "name": "teamcity.git.use.native.ssh",
+        "value": "true",
+        "inherited": true,
+        "type": {
+          "rawValue": "text display='hidden' readOnly='true' validationMode='any'"
+        }
+      },
+      {
+        "name": "yndx.license_server",
+        "value": "1",
+        "inherited": true,
+        "type": {
+          "rawValue": "text display='hidden' readOnly='true' validationMode='any'"
+        }
+      }
+    ]
+  },
+  "steps": {
+    "count": 14,
+    "step": [
+      {
+        "id": "RUNNER_8908",
+        "name": "prepare-env",
+        "type": "simpleRunner",
+        "properties": {
+          "count": 3,
+          "property": [
+            {
+              "name": "script.content",
+              "value": "echo \"##teamcity[blockOpened name='environment']\"\nenv\necho \"##teamcity[blockClosed name='environment']\"\n\nset -ex\n\nif [ \"%balance.docker_name%\" != \"\" ] ; then\n    branch_id_raw=\"%balance.docker_name%\"\nelif [ \"%balance.arcadia_pr_id%\" != \"\" ] ; then\n    branch_id_raw=\"pr-%balance.arcadia_pr_id%\"\nelif [ \"%billing.vhost.branch%\" != \"%billing.vhost.stableBranch%\" ] && [ \"%billing.vhost.branch%\" != \"\" ] ; then\n    branch_id_raw=\"%billing.vhost.branch%\"\nelse\n    echo \"At least one of this must be specified: balance.docker_name, balance.arcadia_pr_id or not released billing.vhost.branch\"\n    exit 1\nfi\nbranch_id=`echo \"$branch_id_raw\" | tr [:upper:] [:lower:] | tr \"./_\" \"-\"`\nbranch_dir=\"/home/${USER}/%billing.branch.work_dir%/$branch_id\"\necho \"ENV VARS\"\n\necho \"##teamcity[setParameter name='env.branch_id_raw' value='$branch_id_raw']\"\necho \"##teamcity[setParameter name='env.branch_id' value='$branch_id']\"\necho \"##teamcity[setParameter name='env.branch_dir' value='$branch_dir']\"\necho \"##teamcity[setParameter name='balance.arcadia_dir' value='$branch_dir/arcadia']\""
+            },
+            {
+              "name": "teamcity.step.mode",
+              "value": "default"
+            },
+            {
+              "name": "use.custom.script",
+              "value": "true"
+            }
+          ]
+        }
+      },
+      {
+        "id": "RUNNER_8909",
+        "name": "prepare-branch-dir",
+        "type": "simpleRunner",
+        "properties": {
+          "count": 3,
+          "property": [
+            {
+              "name": "script.content",
+              "value": "set -xe\nUSERNAME=\"$USER\"\n\necho \"REMOVING OLD REPOS...\"\nfind \"/home/$USERNAME/%billing.branch.work_dir%\" -maxdepth 1 -mtime \"+%billing.branch.max_ttl%\" -type d -exec sudo rm -Rf \"{}\" \\;\n\necho \"REMOVING OLD LOGS...\"\nfind \"%billing.branch.logs_dir%\" -maxdepth 1 -mtime \"+%billing.branch.logs_max_ttl%\" -type d -exec sudo rm -Rf \"{}\" \\;\nfind \"%billing.branch.logs_dir%\" -name *.log* -mtime \"+%billing.branch.logs_max_ttl%\" -type f -exec sudo rm -Rf \"{}\" \\;\n\necho \"CREATING BRANCH DIR...\"\nmkdir -p \"%env.branch_dir%\"\necho %balance.arcadia_pr_id% > \"%env.branch_dir%/arcadia_pr_id\"\n\necho \"PULLING CONFIGS...\"\ntest -f /mnt/remote/greed-tm1h.paysys.yandex.net/etc/oracle/tnsnames.ora\ntest -f /mnt/remote/greed-tm1h.paysys.yandex.net/etc/yandex/balance-common/components.cfg.xml\nif [ \"%billing.runTVMTool%\" = \"yes\" ]\nthen\n  test -f /mnt/remote/greed-tm1h.paysys.yandex.net/etc/tvmtool/tvmtool.conf\nfi\n\nrm -rf /home/$USERNAME/%billing.branch.work_dir%/%env.branch_id%/etc\ncp -r --no-dereference --no-preserve=mode,ownership /mnt/remote/greed-tm1h.paysys.yandex.net/etc /home/$USERNAME/%billing.branch.work_dir%/%env.branch_id%/etc 2>/dev/null || :"
+            },
+            {
+              "name": "teamcity.step.mode",
+              "value": "default"
+            },
+            {
+              "name": "use.custom.script",
+              "value": "true"
+            }
+          ]
+        }
+      },
+      {
+        "id": "RUNNER_10765",
+        "name": "Checkout arcadia",
+        "type": "simpleRunner",
+        "inherited": true,
+        "properties": {
+          "count": 3,
+          "property": [
+            {
+              "name": "script.content",
+              "value": "# Downloading ya\ncurl -k https://api-gotya.n.yandex-team.ru/ya > ya\nchmod +x ./ya\n\nif [ -d \"%balance.arcadia_dir%\" ] ; then\n  echo \"Deleting existing arcadia\"\n  sudo rm -rf \"%balance.arcadia_dir%\"\nfi\n\necho \"Checkouting arcadia\"\n# Downloading minimal arcadia\n./ya clone --branch \"%balance.arcadia_branch%\" \"%balance.arcadia_dir%\"\n# Checkouting billing folder in this instance of svn. \nsvn update \"%balance.arcadia_dir%/billing\""
+            },
+            {
+              "name": "teamcity.step.mode",
+              "value": "default"
+            },
+            {
+              "name": "use.custom.script",
+              "value": "true"
+            }
+          ]
+        }
+      },
+      {
+        "id": "RUNNER_12971",
+        "name": "Svn up to specific revision",
+        "type": "simpleRunner",
+        "inherited": true,
+        "properties": {
+          "count": 3,
+          "property": [
+            {
+              "name": "script.content",
+              "value": "if [ \"%balance.arcadia_revision%\" != \"\" ]; then\n  svn up \"-r%balance.arcadia_revision%\" \"%balance.arcadia_dir%\"\nfi"
+            },
+            {
+              "name": "teamcity.step.mode",
+              "value": "default"
+            },
+            {
+              "name": "use.custom.script",
+              "value": "true"
+            }
+          ]
+        }
+      },
+      {
+        "id": "RUNNER_16221",
+        "name": "Apply arcadia Pull Request",
+        "type": "simpleRunner",
+        "inherited": true,
+        "properties": {
+          "count": 3,
+          "property": [
+            {
+              "name": "script.content",
+              "value": "if [ \"%balance.arcadia_pr_id%\" != \"\" ]; then\n  # Apply patch (at first draft, if not exists - only published)\n  patch_log=\"./svn_patch.log\"\n  (./ya unshelve --arcanum \"%balance.arcadia_pr_id%\" -d \"%balance.arcadia_dir%\" || \\\n    ./ya unshelve --arcanum \"%balance.arcadia_pr_id%\" \"%balance.arcadia_dir%\")  > $patch_log 2>&1\n  patch_status=$?\n  \n  cat $patch_log\n  \n  if ([ $patch_status -ne 0 ] || grep -q \"Summary of conflicts\" $patch_log) && [ \"%balance.arcadia_force_patch%\" != \"true\" ]; then\n    echo \"Filed to apply patch\"\n    exit 1\n  fi\nfi"
+            },
+            {
+              "name": "teamcity.step.mode",
+              "value": "default"
+            },
+            {
+              "name": "use.custom.script",
+              "value": "true"
+            }
+          ]
+        }
+      },
+      {
+        "id": "RUNNER_16487",
+        "name": "prepare-binaries",
+        "type": "simpleRunner",
+        "properties": {
+          "count": 3,
+          "property": [
+            {
+              "name": "script.content",
+              "value": "set -ex\n\nBINARIES_DIR=\"/home/$USER/%billing.branch.work_dir%/%env.branch_id%/binaries\"\n\ndocker stop \"%env.branch_id%\" || true\n\nmkdir -p \"$BINARIES_DIR\"\n\nif [ \"%balance.balance_binary_url%\" != \"\" ] ; then\n    wget \"%balance.balance_binary_url%\" -O \"$BINARIES_DIR/balance-binary\"\nfi\nif [ \"%balance.snout_proxy_binary_url%\" != \"\" ] ; then\n    wget \"%balance.snout_proxy_binary_url%\" -O \"$BINARIES_DIR/yb-snout-proxy-binary\"\nfi\n\nif [ ! -f \"$BINARIES_DIR/balance-binary\" ] ; then\n    echo \"balance-binary is absent. Provide balance.balance_binary_url parameter. Or put binary manually into $BINARIES_DIR/balance-binary\"\nfi\nif [ ! -f \"$BINARIES_DIR/yb-snout-proxy-binary\" ] ; then\n    echo \"yb-snout-proxy-binary is absent. Provide balance.snout_proxy_binary_url parameter. Or put binary manually into $BINARIES_DIR/yb-snout-proxy-binary\"\nfi\n\nchmod a+x \"$BINARIES_DIR/balance-binary\"\nchmod a+x \"$BINARIES_DIR/yb-snout-proxy-binary\""
+            },
+            {
+              "name": "teamcity.step.mode",
+              "value": "default"
+            },
+            {
+              "name": "use.custom.script",
+              "value": "true"
+            }
+          ]
+        }
+      },
+      {
+        "id": "RUNNER_8911",
+        "name": "update-balance",
+        "type": "simpleRunner",
+        "disabled": true,
+        "properties": {
+          "count": 3,
+          "property": [
+            {
+              "name": "script.content",
+              "value": "set -x\n\nbranch_dir=\"/home/${USER}/%billing.branch.work_dir%/%env.branch_id%\"\n\n\necho %balance.arcadia_pr_id% > \"$branch_dir/arcadia_pr_id\"\n\nbalance_code_dir=\"$branch_dir/billing\"\n\nif [ \"%balance.code%\" != \"existing\" ] ; then\n    echo \"Removing billing dir\"\n    sudo rm -Rf \"$balance_code_dir\"\nfi\n\nif [ ! -d \"$balance_code_dir\" ] ; then\n    echo \"Copying code from checkout dir to branch dir\"\n    cp -r billing \"$branch_dir/\" || exit;\n    \n    if [ -d \"./arcadia\" ]; then\n\t    cp -r ./arcadia \"$branch_dir/\"\n    fi\n    if [ -s \"./ya\" ]; then\n    \tcp ./ya \"$branch_dir/\"\n    fi\nfi"
+            },
+            {
+              "name": "teamcity.step.mode",
+              "value": "default"
+            },
+            {
+              "name": "use.custom.script",
+              "value": "true"
+            }
+          ]
+        }
+      },
+      {
+        "id": "RUNNER_8910",
+        "name": "update-vhost",
+        "type": "simpleRunner",
+        "properties": {
+          "count": 3,
+          "property": [
+            {
+              "name": "script.content",
+              "value": "set -x\nbranch_dir=\"/home/${USER}/%billing.branch.work_dir%/%env.branch_id%\"\nvhost_checkout_dir=\"$branch_dir/vhost\"\n\necho \"This tools directory is legacy. This is vhost rep now\"\nvhost_dir=\"vhost\"\n\nif [ \"%billing.vhost.code%\" = \"clean\" ] ; then\n    echo \"Removing vhost dir\"\n    sudo rm -Rf \"$vhost_checkout_dir\"\nfi\n\nif [ ! -d \"$vhost_checkout_dir\" ] ; then\n    echo \"NO VHOST DIR FOUND. CLONING...\"\n    git clone --single-branch -b \"%billing.vhost.branch%\" ssh://git@bb.yandex-team.ru/billing/tools.git \"$vhost_checkout_dir\"\nelif [ \"%billing.vhost.code%\" = \"existing\" ] ; then\n    echo \"Using existing vhost code without cloning or updating\"\nelse\n    echo \"VHOST DIR FOUND. UPDATING...\"\n\n    cd \"$vhost_checkout_dir\"\n\n    git clean -fdx\n    git reset --hard\n    git pull\n\n    cd ..\nfi"
+            },
+            {
+              "name": "teamcity.step.mode",
+              "value": "default"
+            },
+            {
+              "name": "use.custom.script",
+              "value": "true"
+            }
+          ]
+        }
+      },
+      {
+        "id": "RUNNER_14358",
+        "name": "update-qa-web",
+        "type": "simpleRunner",
+        "properties": {
+          "count": 3,
+          "property": [
+            {
+              "name": "script.content",
+              "value": "qa_dir=\"qa\"\n\nif [ \"%billing.needQAWeb%\" = \"yes\" ] ; then\n    echo \"Clone QA web app\"\n\n    set -x\n\n    cd \"/home/$(whoami)/%billing.branch.work_dir%/%env.branch_id%\"\n\n    sudo rm -Rf \"$qa_dir\"\n\n    git clone \"git@github.yandex-team.ru:Billing/yb-qa-web.git\" \"$qa_dir\"\n\n    cd \"$qa_dir\"\n\n    sudo -n git clean -fdx\n\n    git reset --hard\n    git checkout develop\n    git pull\n    git fetch origin \"%billing.qa.branch%\"\n    git branch -D \"%billing.qa.branch%\" || true\n    git checkout -b \"%billing.qa.branch%\" FETCH_HEAD || true\nelse\n    mkdir -p \"$qa_dir\"\nfi"
+            },
+            {
+              "name": "teamcity.step.mode",
+              "value": "default"
+            },
+            {
+              "name": "use.custom.script",
+              "value": "true"
+            }
+          ]
+        }
+      },
+      {
+        "id": "RUNNER_3746",
+        "name": "docker-prepare",
+        "type": "simpleRunner",
+        "properties": {
+          "count": 3,
+          "property": [
+            {
+              "name": "script.content",
+              "value": "set -x\n\ndocker pull \"%billing.dockerImage%\"\ndocker rm -f \"%env.branch_id%\" || true\ndocker network disconnect -f bridge \"%env.branch_id%\" || true"
+            },
+            {
+              "name": "teamcity.step.mode",
+              "value": "default"
+            },
+            {
+              "name": "use.custom.script",
+              "value": "true"
+            }
+          ]
+        }
+      },
+      {
+        "id": "RUNNER_8912",
+        "name": "docker-build",
+        "type": "simpleRunner",
+        "properties": {
+          "count": 3,
+          "property": [
+            {
+              "name": "script.content",
+              "value": "set -ex\n\ndocker run \\\n       --rm \\\n       --name \"%env.branch_id%\" \\\n       -e DOCKER_BALANCE_DB=\"%billing.branch.balance_db%\" \\\n       -e NEED_STORYBOOK=%billing.needStorybook% \\\n       -e NEED_QA_WEB=%billing.needQAWeb% \\\n       -v /home/${USER}/.secret:/.secret:ro \\\n       -v \"%balance.arcadia_dir%/billing/balance:/tools\" \\\n       -v \"/home/${USER}/%billing.branch.work_dir%/%env.branch_id%/venvs:/venvs\" \\\n       -v \"%balance.arcadia_dir%/billing/snout:/snout\" \\\n       -v \"%balance.arcadia_dir%/billing/balance_utils:/balance-utils\" \\\n       -v \"/home/${USER}/%billing.branch.work_dir%/%env.branch_id%/vhost:/vhost\" \\\n       -v \"/home/${USER}/%billing.branch.work_dir%/%env.branch_id%/qa:/qa\" \\\n       -v /var/cache/geobase:/var/cache/geobase \\\n       -v \"/home/${USER}/.ssh:/root/.ssh\" \\\n       %billing.dockerImage% \\\n       /build.sh"
+            },
+            {
+              "name": "teamcity.step.mode",
+              "value": "default"
+            },
+            {
+              "name": "use.custom.script",
+              "value": "true"
+            }
+          ]
+        }
+      },
+      {
+        "id": "RUNNER_8913",
+        "name": "docker-run",
+        "type": "simpleRunner",
+        "properties": {
+          "count": 3,
+          "property": [
+            {
+              "name": "script.content",
+              "value": "set -x\n\nBRANCH_DIR=\"/home/$(whoami)/%billing.branch.work_dir%/%env.branch_id%\"\n\ndocker run \\\n       -d \\\n       -P \\\n       --name \"%env.branch_id%\" \\\n       -e DOCKER_BALANCE_DB=\"%billing.branch.balance_db%\" \\\n       -e CONTAINER_TTL=\"%billing.branchTTL%d\" \\\n       -e PYTHON_SUFFIX=\"%billing.pythonVersion%\" \\\n       -e RUN_CRON=\"%billing.runCron%\" \\\n       -e RUN_TVMTOOL=\"%billing.runTVMTool%\" \\\n       -e DOCKER_INCREASE_WORKERS=\"%billing.dockerIncreaseWorkers%\" \\\n       -v \"%balance.arcadia_dir%/billing/balance:/tools\" \\\n       -v \"%balance.arcadia_dir%/billing/snout:/snout\" \\\n       -v \"%balance.arcadia_dir%/billing/balance_utils:/balance-utils\" \\\n       -v \"$BRANCH_DIR/vhost:/vhost\" \\\n       -v \"$BRANCH_DIR/binaries:/binaries\" \\\n       -v \"$BRANCH_DIR/qa:/qa\" \\\n       -v \"%billing.branch.logs_dir%/%env.branch_id%:/var/log/yb\" \\\n       -v /var/cache/geobase:/var/cache/geobase \\\n       -v \"$BRANCH_DIR/etc/yandex:/etc/yandex\" \\\n       -v \"$BRANCH_DIR/etc/tvmtool:/tvmtool_conf\" \\\n       -v \"$BRANCH_DIR/etc/oracle:/opt/oracle/%billing.instant_client_dir%/network/admin\" \\\n       -v \"/home/${USER}/.ssh:/root/.ssh\" \\\n       %billing.dockerImage% \\\n       /run.sh"
+            },
+            {
+              "name": "teamcity.step.mode",
+              "value": "default"
+            },
+            {
+              "name": "use.custom.script",
+              "value": "true"
+            }
+          ]
+        }
+      },
+      {
+        "id": "RUNNER_2758",
+        "name": "print-urls",
+        "type": "simpleRunner",
+        "properties": {
+          "count": 3,
+          "property": [
+            {
+              "name": "script.content",
+              "value": "echo \"user:        https://user-%env.branch_id%.%billing.branch.host%\"\necho \"admin:       https://admin-%env.branch_id%.%billing.branch.host%\"\necho \"snout:       https://snout-%env.branch_id%.%billing.branch.host%/v1/\"\necho \"jupyter:     https://jupyter-%env.branch_id%.%billing.branch.host%\"\necho \"xmlrpc:      https://xmlrpc-%env.branch_id%.%billing.branch.host%/xmlrpc\"\necho \"test-xmlrpc: https://test-xmlrpc-%env.branch_id%.%billing.branch.host%/xmlrpc\"\necho \"upravlyator: https://balance-xmlrpc-tvm-%env.branch_id%.%billing.branch.host%:8004/idm\"\n\necho \"============================================\"\necho \"USE reclone OPTION IN CASE OF STRANGE ERRORS\"\necho \"============================================\""
+            },
+            {
+              "name": "teamcity.step.mode",
+              "value": "default"
+            },
+            {
+              "name": "use.custom.script",
+              "value": "true"
+            }
+          ]
+        }
+      },
+      {
+        "id": "RUNNER_5712",
+        "name": "tag-build",
+        "type": "simpleRunner",
+        "properties": {
+          "count": 3,
+          "property": [
+            {
+              "name": "script.content",
+              "value": "set -x\n\n. /etc/oraprofile\n. \"%billing.ci-venv-dir%/bin/activate\"\n\necho \"##teamcity[blockOpened name='environment']\"\nenv\necho \"##teamcity[blockClosed name='environment']\"\n\n./ci/teamcity_deploy/teamcity_deploy.py \\\nteamcity_set_build_tag \\\n--build_id=\"%teamcity.build.id%\" \\\n--tag_name=\"%env.branch_id_raw%\""
+            },
+            {
+              "name": "teamcity.step.mode",
+              "value": "default"
+            },
+            {
+              "name": "use.custom.script",
+              "value": "true"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "features": {
+    "count": 8,
+    "feature": [
+      {
+        "id": "BUILD_EXT_1151",
+        "type": "license_build",
+        "disabled": true,
+        "inherited": true
+      },
+      {
+        "id": "BUILD_EXT_1621",
+        "type": "BuildFailureOnMessage",
+        "inherited": true,
+        "properties": {
+          "count": 5,
+          "property": [
+            {
+              "name": "buildFailureOnMessage.conditionType",
+              "value": "contains"
+            },
+            {
+              "name": "buildFailureOnMessage.messagePattern",
+              "value": "Failed to fetch"
+            },
+            {
+              "name": "buildFailureOnMessage.outputText",
+              "value": "\"apt-get\" error"
+            },
+            {
+              "name": "buildFailureOnMessage.reverse",
+              "value": "false"
+            },
+            {
+              "name": "buildFailureOnMessage.stopBuildOnFailure",
+              "value": "true"
+            }
+          ]
+        }
+      },
+      {
+        "id": "ssh-agent-build-feature",
+        "type": "ssh-agent-build-feature",
+        "disabled": true,
+        "inherited": true,
+        "properties": {
+          "count": 1,
+          "property": [
+            {
+              "name": "teamcitySshKey",
+              "value": "robot-billing-ci-rsa"
+            }
+          ]
+        }
+      },
+      {
+        "id": "perfmon",
+        "type": "perfmon",
+        "inherited": true
+      },
+      {
+        "id": "BUILD_EXT_1153",
+        "type": "license_build",
+        "inherited": true
+      },
+      {
+        "id": "BUILD_EXT_1114",
+        "type": "BuildFailureOnMessage",
+        "inherited": true,
+        "properties": {
+          "count": 5,
+          "property": [
+            {
+              "name": "buildFailureOnMessage.conditionType",
+              "value": "contains"
+            },
+            {
+              "name": "buildFailureOnMessage.messagePattern",
+              "value": "fatal error"
+            },
+            {
+              "name": "buildFailureOnMessage.outputText",
+              "value": "\"fatal error\" text was detected"
+            },
+            {
+              "name": "buildFailureOnMessage.reverse",
+              "value": "false"
+            },
+            {
+              "name": "buildFailureOnMessage.stopBuildOnFailure",
+              "value": "true"
+            }
+          ]
+        }
+      },
+      {
+        "id": "BUILD_EXT_1696",
+        "type": "BuildFailureOnMessage",
+        "inherited": true,
+        "properties": {
+          "count": 5,
+          "property": [
+            {
+              "name": "buildFailureOnMessage.conditionType",
+              "value": "contains"
+            },
+            {
+              "name": "buildFailureOnMessage.messagePattern",
+              "value": "repository changed while pushing"
+            },
+            {
+              "name": "buildFailureOnMessage.outputText",
+              "value": "Repository changed while pushing, try again"
+            },
+            {
+              "name": "buildFailureOnMessage.reverse",
+              "value": "false"
+            },
+            {
+              "name": "buildFailureOnMessage.stopBuildOnFailure",
+              "value": "true"
+            }
+          ]
+        }
+      },
+      {
+        "id": "BUILD_EXT_1885",
+        "type": "BuildFailureOnMessage",
+        "inherited": true,
+        "properties": {
+          "count": 5,
+          "property": [
+            {
+              "name": "buildFailureOnMessage.conditionType",
+              "value": "contains"
+            },
+            {
+              "name": "buildFailureOnMessage.messagePattern",
+              "value": "SIGBUS"
+            },
+            {
+              "name": "buildFailureOnMessage.outputText",
+              "value": "Node.js SASS module build failed, try again"
+            },
+            {
+              "name": "buildFailureOnMessage.reverse",
+              "value": "false"
+            },
+            {
+              "name": "buildFailureOnMessage.stopBuildOnFailure",
+              "value": "true"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "triggers": {
+    "count": 0
+  },
+  "snapshot-dependencies": {
+    "count": 0
+  },
+  "artifact-dependencies": {
+    "count": 0
+  },
+  "agent-requirements": {
+    "count": 2,
+    "agent-requirement": [
+      {
+        "id": "RQ_2807",
+        "type": "starts-with",
+        "properties": {
+          "count": 2,
+          "property": [
+            {
+              "name": "property-name",
+              "value": "teamcity.agent.name"
+            },
+            {
+              "name": "property-value",
+              "value": "billing.greed-dev2h"
+            }
+          ]
+        }
+      },
+      {
+        "id": "RQ_2368",
+        "type": "does-not-contain",
+        "disabled": true,
+        "inherited": true,
+        "properties": {
+          "count": 2,
+          "property": [
+            {
+              "name": "property-name",
+              "value": "teamcity.agent.name"
+            },
+            {
+              "name": "property-value",
+              "value": "billing.greed-dev2h"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "builds": {
+    "href": "/app/rest/buildTypes/id:Billing_Tools_Arcadia_Build_DockerBinaryPullRequest/builds/"
+  },
+  "investigations": {
+    "href": "/app/rest/investigations?locator=buildType:(id:Billing_Tools_Arcadia_Build_DockerBinaryPullRequest)"
+  },
+  "compatibleAgents": {
+    "href": "/app/rest/agents?locator=compatible:(buildType:(id:Billing_Tools_Arcadia_Build_DockerBinaryPullRequest))"
+  }
+}
